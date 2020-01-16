@@ -37,7 +37,8 @@ def copyfile(srcfile,dstfile):
         shutil.copyfile(srcfile,dstfile)    
    
 def dist(lat1=0,lon1=0,lat2=0,lon2=0):
-    """caculate the distance of two points, return miles"""
+    """caculate the distance of two points, return miles
+    the format of lat and  lon is 00.00 (dd not dm)"""
     conversion_factor = 0.62137119
     R = 6371.004
     lon1, lat1 = angle_conversion(lon1), angle_conversion(lat1)
@@ -47,7 +48,8 @@ def dist(lat1=0,lon1=0,lat2=0,lon2=0):
     return l
 
 def ThreeD_dist(lat1=0,lon1=0,lat2=0,lon2=0,h1=0,h2=0):
-    """caculate the distance of two points, return meters"""
+    """caculate the distance of two points, return meters
+    the lat lon format is dd, the unit of h is m"""
     R = 6371.004
     lon1, lat1 = angle_conversion(lon1), angle_conversion(lat1)
     lon2, lat2 = angle_conversion(lon2), angle_conversion(lat2)
@@ -248,7 +250,9 @@ def list_uv2sd(u,v):
     return s,d
 
 def local2utc(local_st):
-    """local time to utc time"""
+    """
+    the format of time is datetime: eg.:datetime.datetime(2019, 3, 7, 15, 50, 50)
+    local time to utc time"""
     time_struct = time.mktime(local_st.timetuple())
     utc_st = datetime.datetime.utcfromtimestamp(time_struct)
     return utc_st
@@ -345,7 +349,10 @@ def transform_date(date):
     return date_data
 
 def utc2local(utc_st):
-    """UTC time to local time"""
+    """
+    utc_st: the format like this: datetime.datetime(2019, 3, 7, 10, 50, 50)
+    UTC time to local time
+    """
     now_stamp = time.time()
     local_time = datetime.datetime.fromtimestamp(now_stamp)
     utc_time = datetime.datetime.utcfromtimestamp(now_stamp)

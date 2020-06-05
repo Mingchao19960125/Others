@@ -179,7 +179,8 @@ def gmt_to_eastern(times_gmt):
     return easterndate
 
 
-def isConnected(address="http://server.arcgisonline.com/ArcGIS"):    
+def  isConnected(address="http://server.arcgisonline.com/ArcGIS"):
+    
     "check the internet"
     try:
         html = requests.get(address,timeout=2)
@@ -221,6 +222,8 @@ def keep_number(value,integer_num,decimal_digits):
 
 def list_all_files(rootdir):
     """get all files' path and name in rootdirectory"""
+    if rootdir[0] != 'E':
+        rootdir=rootdir[1:]
     _files = []
     list = os.listdir(rootdir) #列出文件夹下所有的目录与文件
     for i in range(0,len(list)):
